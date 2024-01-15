@@ -95,4 +95,46 @@ public class SchoolApplication {
 		schoolList.clear();
 	}
 
+
+	@GetMapping  ("/students/by/schoolname")
+	public List<Student> getStudentsBySchoolname(@RequestParam String schoolName) {
+		List<Student> studentList = new ArrayList<>();
+
+
+		for(School school : schoolList){
+			if(school.schoolName .equals(schoolName))
+				studentList = school.students;
+
+
+		}
+		return studentList;
+	}
+
+	@GetMapping  ("/schools/by/studentname")
+	public List<School> getSchoolsByStudentName(@RequestParam String studentName) {
+		List<School> schoolListByStudentName = new ArrayList<>();
+
+
+		for(School school : schoolList){
+
+			for(Student student : school.students)
+
+			if(student.name .equals(studentName))
+				schoolListByStudentName.add(school);
+
+
+		}
+		return schoolListByStudentName;
+	}
 }
+
+
+
+/*
+Student
+	boolean is present
+	istekte (studentName)
+	param true,false(is present)
+
+student true mu false mu(sınıfta var mı yok mu)
+ */
